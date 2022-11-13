@@ -10,6 +10,9 @@
     "lib": "lib",
     "test": "__tests__"
   },
+  "bin": {
+    "imooc-ws-cli-dev": "bin/index.js"
+  },
   "files": [
     "lib"
   ],
@@ -18,5 +21,6 @@
   },
   "scripts": {
     "test": "node ./__tests__/core.test.js"
-  }
+  },
+  "gitHead": "9d7c1a81a76ceac3be71e5da1aecdad1ee1fd41d"
 }
