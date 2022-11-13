@@ -1,6 +1,6 @@
 {
   "name": "@imooc-ws-cli-dev/utils",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "> TODO: description",
   "author": "悦者生存 <1002783067@qq.com>",
   "homepage": "",
@@ -19,5 +19,5 @@
   "scripts": {
     "test": "node ./__tests__/utils.test.js"
   },
-  "gitHead": "9d7c1a81a76ceac3be71e5da1aecdad1ee1fd41d"
+  "gitHead": "9358c40eb5bf93381d072715aab8c78ec5af19ab"
 }
