@@ -20,6 +20,11 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
+  "dependencies": {
+    "@imooc-ws-cli-dev/utils": "file:../../utils/utils",
+    "import-local": "^3.1.0",
+    "npmlog": "^7.0.1"
+  },
   "scripts": {
     "test": "node ./__tests__/core.test.js"
   },
