@@ -11,5 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "lerna": "^6.0.3"
+  },
+  "devDependencies": {
+    "semver": "^7.3.8"
   }
 }
