@@ -21,13 +21,16 @@
     "access": "public"
   },
   "dependencies": {
-    "@imooc-ws-cli-dev/utils": "file:../../utils/utils",
     "@imooc-ws-cli-dev/log": "file:../../utils/log",
+    "@imooc-ws-cli-dev/utils": "file:../../utils/utils",
     "import-local": "^3.1.0",
     "npmlog": "^7.0.1"
   },
   "scripts": {
     "test": "node ./__tests__/core.test.js"
   },
-  "gitHead": "97aad050a528341ec85adb8d401f92f1d5a89d26"
+  "gitHead": "97aad050a528341ec85adb8d401f92f1d5a89d26",
+  "devDependencies": {
+    "semver": "^7.3.8"
+  }
 }
