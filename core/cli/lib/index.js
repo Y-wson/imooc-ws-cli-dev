@@ -2,7 +2,7 @@
  * @Author: 悦者生存 1002783067@qq.com
  * @Date: 2022-11-12 16:12:52
  * @LastEditors: 悦者生存 1002783067@qq.com
- * @LastEditTime: 2022-11-22 21:56:49
+ * @LastEditTime: 2022-11-22 23:03:11
  * @FilePath: /imooc-ws-cli-dev/core/core/lib/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -45,7 +45,8 @@ function registerCommand() {
     //     .action(exec);
     
     program.on('option:debug', function () {
-        if (program.debug) {
+        const options = this.opts();
+        if (options.debug) {
             process.env.LOG_LEVEL = 'verbose'
         } else {
             process.env.LOG_LEVEL = 'info';
