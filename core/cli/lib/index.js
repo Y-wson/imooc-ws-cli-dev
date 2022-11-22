@@ -2,16 +2,18 @@
  * @Author: 悦者生存 1002783067@qq.com
  * @Date: 2022-11-12 16:12:52
  * @LastEditors: 悦者生存 1002783067@qq.com
- * @LastEditTime: 2022-11-19 19:21:08
+ * @LastEditTime: 2022-11-22 21:56:49
  * @FilePath: /imooc-ws-cli-dev/core/core/lib/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 'use strict';
 
+
 const semver = require('semver');
 const fs = require('fs-extra');
 const chalk = require('chalk');
 const userHome = require('user-home');
+const { program } = require('commander');
 const path = require('path');
 const log = require('@imooc-ws-cli-dev/log');
 const pkg = require('../package.json');
@@ -19,21 +21,51 @@ const { LOWEST_PKG_VERSION, DEFAULT_CLI_HOME } = require('./const');
 
 let argvs = {};
 
-
 async function core() {
-    // TODO: 第二遍看视频的话，要弄懂为什么要做这些事情
     try {
-        checkPkgVersion();
-        checkRoot();
-        checkUserHome();
-        checkInputArgv();
-        checkArgv();
-        checkEnv();
-        await checkGlobalUpdate();
-    } catch (error) {
-        log.warn(error);
+        await prepare();
+        registerCommand();
+    } catch (e) {
+        log.error(e.message);
+        if (program) {}
     }
-   
+}
+
+function registerCommand() {
+    program
+        .name(Object.keys(pkg.bin)[0])
+        .usage("<command> [options]")
+        .version(pkg.version) // 添加版本信息
+        .option('-d, --debug', '是否开启调试模式', false)
+        .option('-tp, --targetPath <targetPath>', '是否指定本地调试文件路径', '');
+    
+    // program
+    //     .command('init [projectName]')
+    //     .option('-f, --force', '是否强制初始化项目')
+    //     .action(exec);
+    
+    program.on('option:debug', function () {
+        if (program.debug) {
+            process.env.LOG_LEVEL = 'verbose'
+        } else {
+            process.env.LOG_LEVEL = 'info';
+        }
+        log.level = process.env.LOG_LEVEL;
+        log.verbose('test');
+    })
+    // 监听参数
+    program.parse(process.argv);
+}
+
+
+async function prepare() {
+    // TODO: 第二遍看视频的话，要弄懂为什么要做这些事情\
+    checkPkgVersion();
+    checkRoot();
+    checkUserHome();
+    checkArgv();
+    checkEnv();
+    await checkGlobalUpdate();
 }
 
 // 检测package.json版本是否大于最低版本
@@ -59,12 +91,6 @@ function checkUserHome() {
     if (!userHome || !fs.pathExistsSync(userHome)) {
         throw new Error(chalk.red(`the user main directory is not exist`));
     }
-}
-
-// 检查入参
-function checkInputArgv() {
-    const minimist = require('minimist');
-    argvs = minimist(process.argv.slice(2));
 }
 
 // 检查是否有debug

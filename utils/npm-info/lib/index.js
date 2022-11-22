@@ -2,7 +2,7 @@
  * @Author: 悦者生存 1002783067@qq.com
  * @Date: 2022-11-19 17:06:36
  * @LastEditors: 悦者生存 1002783067@qq.com
- * @LastEditTime: 2022-11-19 19:33:24
+ * @LastEditTime: 2022-11-22 21:53:10
  * @FilePath: /imooc-ws-cli-dev/utils/npm-info/lib/index.js
  * @Description: get npm info
  */
@@ -18,7 +18,6 @@ function getNpmInfo(npmName, registry) {
     }
     const registryUrl = registry || getDefaultRegistry();
     const npmInfoUrl = urlJoin(registryUrl, npmName);
-    console.log(npmInfoUrl);
     return axios.get(npmInfoUrl).then(response => {
         if (response.status === 200) {
             return response.data;
