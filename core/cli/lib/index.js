@@ -2,7 +2,7 @@
  * @Author: 悦者生存 1002783067@qq.com
  * @Date: 2022-11-12 16:12:52
  * @LastEditors: 悦者生存 1002783067@qq.com
- * @LastEditTime: 2022-11-22 23:03:11
+ * @LastEditTime: 2022-11-26 23:06:28
  * @FilePath: /imooc-ws-cli-dev/core/core/lib/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -16,6 +16,7 @@ const userHome = require('user-home');
 const { program } = require('commander');
 const path = require('path');
 const log = require('@imooc-ws-cli-dev/log');
+const init = require('@imooc-ws-cli-dev/init');
 const pkg = require('../package.json');
 const { LOWEST_PKG_VERSION, DEFAULT_CLI_HOME } = require('./const');
 
@@ -39,10 +40,10 @@ function registerCommand() {
         .option('-d, --debug', '是否开启调试模式', false)
         .option('-tp, --targetPath <targetPath>', '是否指定本地调试文件路径', '');
     
-    // program
-    //     .command('init [projectName]')
-    //     .option('-f, --force', '是否强制初始化项目')
-    //     .action(exec);
+    program
+        .command('init [projectName]')
+        .option('-f, --force', '是否强制初始化项目')
+        .action(init);
     
     program.on('option:debug', function () {
         const options = this.opts();
@@ -54,6 +55,16 @@ function registerCommand() {
         log.level = process.env.LOG_LEVEL;
         log.verbose('test');
     })
+
+    // 对未知命令的监听
+    program.on('command:*', function (obj) {
+        const availableCommands = program.commands.map(cmd => cmd.name());
+        console.log(chalk.red('未知命令' + obj[0]));
+        if (availableCommands.length > 0) {
+            console.log(chalk.red('可用命令'+availableCommands.join(',')));
+        }
+    })
+
     // 监听参数
     program.parse(process.argv);
 }
