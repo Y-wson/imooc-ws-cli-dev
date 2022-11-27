@@ -1,5 +1,5 @@
 {
-  "name": "@imooc-ws-cli-dev/package",
+  "name": "@imooc-ws-cli-dev/format-path",
   "version": "0.0.7",
   "description": "> TODO: description",
   "author": "悦者生存 <1002783067@qq.com>",
@@ -13,12 +13,6 @@
   "files": [
     "lib"
   ],
-  "dependencies": {
-    "@imooc-ws-cli-dev/format-path": "file:../../utils/format-path",
-    "@imooc-ws-cli-dev/utils": "file:../../utils/utils",
-    "@imooc-ws-cli-dev/npm-info": "file:../../utils/npm-info",
-    "pkg-dir": "^5.0.0"
-  },
   "publishConfig": {
     "registry": "http://registry.npmmirror.com"
   },
@@ -27,13 +21,9 @@
     "url": "git+https://github.com/Y-wson/imooc-ws-cli-dev.git"
   },
   "scripts": {
-    "test": "node ./__tests__/package.test.js"
+    "test": "node ./__tests__/format-path.test.js"
   },
   "bugs": {
     "url": "https://github.com/Y-wson/imooc-ws-cli-dev/issues"
-  },
-  "devDependencies": {
-    "fs-extra": "^10.1.0",
-    "npminstall": "^6.6.1"
   }
 }
