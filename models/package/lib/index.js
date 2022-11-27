@@ -1,18 +1,30 @@
-/*
- * @Author: 悦者生存 1002783067@qq.com
- * @Date: 2022-11-20 21:36:41
- * @LastEditors: 悦者生存 1002783067@qq.com
- * @LastEditTime: 2022-11-22 21:53:18
- * @FilePath: /imooc-ws-cli-dev/models/package/lib/index.js
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
 'use strict';
 
-const path = require('path');
+const { isObject } = require('@imooc-ws-cli-dev/utils');
 
+class Package {
+    constructor(options) {
+        if (!options) {
+            throw new Error('Package类的options参数不能为空！');
+        }
+        if (!isObject(options)) {
+            throw new Error('Package类的options参数必须为对象！');
+        }
+        // package的目标路径
+        this.targetPath = options.targetPath;
+        // 缓存package的路径
+        this.storeDir = options.storeDir;
+        // package的name
+        this.packageName = options.packageName;
+        // package的version
+        this.packageVersion = options.packageVersion;
+    }
 
-function package() {
-    return "Hello from package";
+    // 安装package
+    install() { }
+
+    // 更新package
+    update() { } ß
 }
 
-module.exports = package;
+module.exports = Package;

@@ -13,6 +13,9 @@
   "files": [
     "lib"
   ],
+  "dependencies": {
+    "@imooc-ws-cli-dev/utils": "file:../../utils/utils"
+  },
   "publishConfig": {
     "registry": "http://registry.npmmirror.com"
   },
