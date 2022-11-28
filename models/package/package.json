@@ -15,8 +15,8 @@
   ],
   "dependencies": {
     "@imooc-ws-cli-dev/format-path": "file:../../utils/format-path",
-    "@imooc-ws-cli-dev/utils": "file:../../utils/utils",
     "@imooc-ws-cli-dev/npm-info": "file:../../utils/npm-info",
+    "@imooc-ws-cli-dev/utils": "file:../../utils/utils",
     "pkg-dir": "^5.0.0"
   },
   "publishConfig": {

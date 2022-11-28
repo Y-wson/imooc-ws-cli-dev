@@ -2,7 +2,7 @@
  * @Author: 悦者生存 1002783067@qq.com
  * @Date: 2022-11-27 11:40:47
  * @LastEditors: 悦者生存 1002783067@qq.com
- * @LastEditTime: 2022-11-27 22:16:43
+ * @LastEditTime: 2022-11-28 21:28:43
  * @FilePath: /imooc-ws-cli-dev/models/package/lib/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -11,14 +11,11 @@
 const pkgDir = require('pkg-dir').sync;
 const { isObject } = require('@imooc-ws-cli-dev/utils');
 const formatPath = require('@imooc-ws-cli-dev/format-path');
-const { getNpmLatestVersion } = require('@imooc-ws-cli-dev/npm-info');
+const { getNpmLatestVersion, getDefaultRegistry } = require('@imooc-ws-cli-dev/npm-info');
 const fs = require('fs-extra');
+const npminstall = require('npminstall');
 const path = require('path');
 
-const ç = {
-    init: '@imooc-cli/init',
-    publish: '@imooc-cli/publish',
-};
 class Package {
     constructor(options) {
         if (!options) {
@@ -76,7 +73,29 @@ class Package {
     }
 
     // 更新package
-    update() { }
+    async update() {
+        await this.prepare();
+        // 1. 获取最新的npm模块版本号
+        const latestPackageVersion = await getNpmLatestVersion(this.packageName);
+        // 2. 查询最新版本号对应的路径是否存在
+        const latestFilePath = this.getSpecificCacheFilePath(latestPackageVersion);
+        // 3. 如果不存在，则直接安装最新版本
+        if (!fs.pathExistsSync(latestFilePath)) {
+        await npminstall({
+            root: this.targetPath,
+            storeDir: this.storeDir,
+            registry: getDefaultRegistry(),
+            pkgs: [{
+                name: this.packageName,
+                version: latestPackageVersion,
+            }],
+        });
+        this.packageVersion = latestPackageVersion;
+        } else {
+        this.packageVersion = latestPackageVersion;
+        }
+
+     }
 
     // 获取入口文件路径
     getRootFilePath() {
