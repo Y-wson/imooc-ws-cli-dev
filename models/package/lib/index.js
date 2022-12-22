@@ -2,7 +2,7 @@
  * @Author: 悦者生存 1002783067@qq.com
  * @Date: 2022-11-27 11:40:47
  * @LastEditors: 悦者生存 1002783067@qq.com
- * @LastEditTime: 2022-11-28 21:28:43
+ * @LastEditTime: 2022-12-03 19:28:23
  * @FilePath: /imooc-ws-cli-dev/models/package/lib/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -42,7 +42,8 @@ class Package {
 
     async prepare() {
         if (this.storeDir && !fs.pathExistsSync(this.storeDir)) {
-            fs.mkdirSync(this.storeDir);
+            // 注意这里使用的mkdirp而不是mkdir
+            fs.mkdirpSync(this.storeDir);
         }
         if (this.packageVersion === 'latest') {
             this.packageVersion = await getNpmLatestVersion(this.packageName);

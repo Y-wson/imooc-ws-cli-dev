@@ -2,7 +2,7 @@
  * @Author: 悦者生存 1002783067@qq.com
  * @Date: 2022-11-12 16:12:52
  * @LastEditors: 悦者生存 1002783067@qq.com
- * @LastEditTime: 2022-11-27 16:33:37
+ * @LastEditTime: 2022-12-03 19:33:29
  * @FilePath: /imooc-ws-cli-dev/core/core/lib/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -16,7 +16,6 @@ const userHome = require('user-home');
 const { program } = require('commander');
 const path = require('path');
 const log = require('@imooc-ws-cli-dev/log');
-const init = require('@imooc-ws-cli-dev/init');
 const exec = require('@imooc-ws-cli-dev/exec');
 const pkg = require('../package.json');
 const { LOWEST_PKG_VERSION, DEFAULT_CLI_HOME } = require('./const');

@@ -1,5 +1,5 @@
 {
-  "name": "@imooc-ws-cli-dev/init",
+  "name": "@imooc-ws-cli-dev/command",
   "version": "0.0.7",
   "description": "> TODO: description",
   "author": "悦者生存 <1002783067@qq.com>",
@@ -21,21 +21,14 @@
     "url": "git+https://github.com/Y-wson/imooc-ws-cli-dev.git"
   },
   "scripts": {
-    "test": "node ./__tests__/init.test.js"
+    "test": "node ./__tests__/Command.test.js"
   },
   "bugs": {
     "url": "https://github.com/Y-wson/imooc-ws-cli-dev/issues"
   },
-  "dependencies": {
-    "@imooc-ws-cli-dev/command": "file:../../models/Command",
-    "@imooc-ws-cli-dev/log": "file:../../utils/log",
-    "@imooc-ws-cli-dev/package": "file:../../models/package",
-    "@imooc-ws-cli-dev/utils": "file:../../utils/utils"
-  },
   "devDependencies": {
-    "fs-extra": "^11.1.0",
-    "inquirer": "^9.1.4",
+    "chalk": "^4.1.2",
     "semver": "^7.3.8",
-    "user-home": "^3.0.0"
+    "@imooc-ws-cli-dev/log": "file:../../utils/log"
   }
 }
